@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Prueba-ReactJS/static/css/main.0bce0bba.chunk.css",
+    "main.js": "/Prueba-ReactJS/static/js/main.23b21985.chunk.js",
+    "main.js.map": "/Prueba-ReactJS/static/js/main.23b21985.chunk.js.map",
+    "runtime-main.js": "/Prueba-ReactJS/static/js/runtime-main.6262ba4d.js",
+    "runtime-main.js.map": "/Prueba-ReactJS/static/js/runtime-main.6262ba4d.js.map",
+    "static/js/2.d77b545a.chunk.js": "/Prueba-ReactJS/static/js/2.d77b545a.chunk.js",
+    "static/js/2.d77b545a.chunk.js.map": "/Prueba-ReactJS/static/js/2.d77b545a.chunk.js.map",
+    "index.html": "/Prueba-ReactJS/index.html",
+    "precache-manifest.37bf9707d2b8e73803d7dd245db8e776.js": "/Prueba-ReactJS/precache-manifest.37bf9707d2b8e73803d7dd245db8e776.js",
+    "service-worker.js": "/Prueba-ReactJS/service-worker.js",
+    "static/css/main.0bce0bba.chunk.css.map": "/Prueba-ReactJS/static/css/main.0bce0bba.chunk.css.map",
+    "static/js/2.d77b545a.chunk.js.LICENSE.txt": "/Prueba-ReactJS/static/js/2.d77b545a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6262ba4d.js",
+    "static/js/2.d77b545a.chunk.js",
+    "static/css/main.0bce0bba.chunk.css",
+    "static/js/main.23b21985.chunk.js"
+  ]
+}
