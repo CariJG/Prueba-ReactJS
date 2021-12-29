@@ -28,12 +28,10 @@ class Empleados extends Component {
       /^^(\d{10})$/.test(empleado.telefono) &&
       /^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$/.test(empleado.rfc) &&
       /^(\d{2})(\d{2})(\d{2})\d{5}$/.test(empleado.nss)) {
-        
       if (this.state.edit) {
         this.props.onEditEmpleado(empleado);
       }
       else {
-
         this.props.onAddEmpleado(empleado); 
         this.setState({
           nombre: '',
@@ -41,11 +39,9 @@ class Empleados extends Component {
           nss: '',
           rfc: ''
         });
-
       }
     }
   }
-
   //Evento a ejecutar al escribir texto
   handleInputChange(e) {
     const { value, name } = e.target; 
@@ -65,18 +61,16 @@ class Empleados extends Component {
       <form onSubmit={this.handleSubmit} data-aos="fade-up" data-aos-delay="600" className="was-validated needs-validation m-0" noValidate>
         {this.state.edit ? msgModificar : ""}
         {this.state.edit ? line : ""}
-        <div className=" form-row col-sm-12 p-0">
-          <div className=" form-group col-md-7 col-sm-12  ">
+        <div className="form-row col-sm-12 p-0">
+          <div className="form-group col-md-6">
             <label htmlFor="validar_nombre"><strong>Nombre</strong></label>
             <input className="form-control form-control-sm" id="validar_nombre" name="nombre" type="text"
               pattern="[a-z,A-Z,á,é,í,ó,ú,â,ê,ô,ã,õ,ç,Á,É,Í,Ó,Ú,Â,Ê,Ô,Ã,Õ,Ç,ü,ñ,Ü,Ñ,' ']+" value={this.state.nombre}
               onChange={this.handleInputChange} maxLength="30" required />
             <div className="valid-feedback msgValidation">  {msgSuccess} </div>
             <div className="invalid-feedback msgValidation">Incorrecto. Ej. Luis López</div>
-
           </div>
-
-          <div className=" form-group col-md-5 col-sm-12  ">
+          <div className="form-group col-md-6">
             <label htmlFor="validar_telefono text-left"><strong>Teléfono</strong></label>
             <input className="form-control form-control-sm" id="validar_telefono" name="telefono" type="text"
               pattern="^(\d{10})$" value={this.state.telefono}
@@ -85,11 +79,8 @@ class Empleados extends Component {
             <div className="invalid-feedback msgValidation">Incorrecto. Ej. 1234567890</div>
           </div>
         </div>
-
-
-        <div className=" row form-row col-sm-12 p-0">
-          <div className=" form-group col-md-6 col-sm-12  ">
-
+        <div className="form-row col-sm-12 p-0">
+          <div className="form-group col-md-6">
             <label htmlFor="validar_rfc"><strong>RFC</strong></label>
             <input className="form-control form-control-sm" id="validar_rfc" name="rfc" type="text"
               pattern="^([A-ZÑ\x26]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1]))([A-Z\d]{3})?$" value={this.state.rfc}
@@ -97,8 +88,7 @@ class Empleados extends Component {
             <div className="valid-feedback msgValidation">  {msgSuccess} </div>
             <div className="invalid-feedback msgValidation">Incorrecto. Ej. ABCD001122ABC</div>
           </div>
-
-          <div className=" form-group col-md-5 offset-md-1">
+          <div className="form-group col-md-6">
             <label htmlFor="validar_nss"><strong>NSS</strong></label>
             <input className="form-control form-control-sm" id="validar_nss" name="nss" type="text" value={this.state.nss}
               pattern="^(\d{2})(\d{2})(\d{2})\d{5}$"
@@ -107,19 +97,12 @@ class Empleados extends Component {
             <div className="invalid-feedback msgValidation">Incorrecto. Ej. 12345678901</div>
           </div>
         </div>
-
         <div className="text-center" data-aos="fade-up" data-aos-delay="600">
-
           {this.state.edit ? modificar : agregar}
         </div>
-
-
       </form>
-
-
     )
   }
-
 }
 
 export default Empleados;

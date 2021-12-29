@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
-
-import './App.css';
-
+import React, { Component } from 'react'
+import './App.css'
+import SVG from 'react-inlinesvg'
 // data
-import { empleados } from './todos.json';
-
+import { empleados } from './todos.json'
 // subcomponents
-import EmpleadoForm from './components/EmpleadoForm';
-
+import EmpleadoForm from './components/EmpleadoForm'
+import ConsumoApi from './components/ConsumoApi'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
-import './main'; 
+import './main'
 const MySwal = withReactContent(Swal)
- 
+
 class App extends Component {
   constructor() {
     super();
@@ -27,15 +24,16 @@ class App extends Component {
   removeEmpleado(index) { 
     MySwal.fire({
       icon: 'error',
-      title: '¿Deseas eliminar a ' + this.state.empleados[index].nombre + '?',
+      html:  <div className="font-weight-light">¿Deseas eliminar al empleado <span className="font-weight-bold">{this.state.empleados[index].nombre}</span>?</div>,
       showConfirmButton: true,
-      confirmButtonText: 'Continuar',
+      confirmButtonText: 'Eliminar',
       showCancelButton: true,
       cancelButtonText: 'Cancelar',
       buttonsStyling: false,
       customClass:{
-        confirmButton: 'btn btn-outline-danger btn-sm m-4',
-        cancelButton: 'btn btn-outline-primary btn-sm m-4',
+        confirmButton: 'btn btn-outline-danger btn-sm',
+        cancelButton: 'btn btn-outline-primary btn-sm ml-4',
+        popup: 'w-auto'
       }
     }).then((result) => {
       if (result.value) {
@@ -43,7 +41,6 @@ class App extends Component {
           empleados: this.state.empleados.filter((e, i) => {
             return i !== index
           })
-
         })
       }
     })
@@ -55,17 +52,22 @@ class App extends Component {
     MySwal.fire({
       title: 'Modificar empleado', 
       html:  <EmpleadoForm empleado={args} onEditEmpleado={this.handleEditEmpleado} ></EmpleadoForm>,
-      showConfirmButton: false
+      showConfirmButton: false,
+      customClass:{
+        popup: 'w-auto'
+      }
     })
-
   }
 
   handleAddEmpleado(empleado) {
     MySwal.fire({
       icon: 'success',
-      title: empleado.nombre + ' fue agregado',
+      html:  <div className="font-weight-light">El empleado <span className="font-weight-bold">{empleado.nombre}</span> fue agregado</div>,
       showConfirmButton: false,
-      timer: 1500
+      timer: 1500,
+      customClass:{
+        popup: 'w-auto'
+      }
     }).then((result) => {
       this.setState({
         empleados: [...this.state.empleados, empleado]
@@ -74,10 +76,9 @@ class App extends Component {
   }
 
   handleEditEmpleado(empleado) {
-
     MySwal.fire({
       icon: 'success',
-      title: empleado.nombre + ' fue editado',
+      html:  <div className="font-weight-light">El empleado <span className="font-weight-bold">{empleado.nombre}</span> fue editado</div>,
       showConfirmButton: false,
       timer: 1500
     }).then((result) => {
@@ -89,7 +90,6 @@ class App extends Component {
             e.rfc = empleado.rfc;
             e.nss = empleado.nss;
           }
-
           return e;
         })
       })
@@ -97,86 +97,68 @@ class App extends Component {
   }
 
   render() {
-
     const empleados = this.state.empleados.map((empleado, i) => {
       return (
-
         <tr className="text-center" key={i}>
-
           <th scope="row">{i + 1}</th>
           <td>{empleado.nombre}</td>
           <td>{empleado.telefono}</td>
           <td>{empleado.nss}</td>
           <td>{empleado.rfc}</td>
-
           <th>
-            <button type="button" className="btn btn-outline-success btn-sm "
-              onClick={this.editEmpleado.bind(this, i)} ><strong><i className="fa fa fa-pencil"></i></strong></button>
-            <button type="button" className="btn btn-outline-danger btn-sm ml-3"
-              onClick={this.removeEmpleado.bind(this, i)}><strong><i className="fa fa-trash-o"></i></strong></button>
+            <button type="button" className="btn btn-outline-success btn-sm p-1"
+              onClick={this.editEmpleado.bind(this, i)} ><strong><i className="las la la-pencil font-size-lg"></i></strong></button>
+            <button type="button" className="btn btn-outline-danger btn-sm ml-3 p-1"
+              onClick={this.removeEmpleado.bind(this, i)}><strong><i className="las la la-trash font-size-lg"></i></strong></button>
           </th>
         </tr>
-
       )
     });
-
-
-
     // RETURN THE COMPONENT
     return (
       <div className="App">
         <header id="header" className="fixed-top d-flex align-items-center">
           <div className="container d-flex align-items-center">
-
             <div className="logo mr-auto">
-              <h1>Empleados</h1>
+              <h1>Sistema CRUD</h1>
             </div>
-
             <nav className="nav-menu  ">
               <ul>
                 <li className="active"><a href="#header">Registro</a></li>
-                <li><a href="#lista">Listado</a></li>
+                <li><a href="#lista">Listado de empleados</a></li>
+                <li><a href="#api">Consumo API</a></li>
               </ul>
             </nav> 
           </div>
         </header>
         <section id="empleado" className="d-flex align-items-center">
-
           <div className="container">
             <div className="row">
-
               <div className="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex  flex-column justify-content-center">
                 <h1 className="text-center" data-aos="fade-up">Registro</h1>
                 <h2 className="pt-3 pb-3 text-center" data-aos="fade-up" data-aos-delay="400">Introduce los datos del nuevo empleado</h2>
-
                 <EmpleadoForm onAddEmpleado={this.handleAddEmpleado}></EmpleadoForm>
               </div>
-
-
-              <div className="col-lg-6 order-1 order-lg-2 empleado-img" data-aos="fade-left" data-aos-delay="200" >
-                <img src="form.png" className="img-fluid animated center_img" alt="" />
+              <div className="col-lg-6 order-1 order-lg-2 empleado-img text-right" data-aos="fade-left" data-aos-delay="200" >
+                <div className="animated">
+                  <SVG width="90%" height="90%" src={process.env.PUBLIC_URL+'/svg/addUser.svg'} />
+                </div>
               </div>
             </div>
           </div>
-
         </section>
-
         <main id="main">
           <section id="lista" className="lista section-bg">
             <div className="container">
-
               <div className="section-title" data-aos="fade-up">
                 <h2>Empleados</h2>
-
               </div>
-
               <div className="row">
-                <div className="col-sm-12  ">
+                <div className="col-sm-12">
                   <div className="member" data-aos="fade-up" data-aos-delay="400">
                     <div className="member-info">
-                      <h4>INEIN Infraestructura e Interiores</h4>
-                      <span className="mb-3">{this.state.empleados.length} empleados registrados</span>
-
+                      <h4>Listado de empleados</h4>
+                      <span className="mb-3">{this.state.empleados.length} {this.state.empleados.length === 1? 'empleado registrado':'empleados registrados'} </span>
                       <table className="table table-responsive-sm table-hover">
                         <thead className="text-center">
                           <tr>
@@ -189,29 +171,26 @@ class App extends Component {
                           </tr>
                         </thead>
                         <tbody>
-
                           {empleados}
-
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
-
               </div>
-
             </div>
           </section>
-
+          <section id="api" className="lista pb-3">
+            <div className="container">
+              <div className="section-title pb-0" data-aos="fade-up">
+                <h2>Consumo API</h2>
+                <ConsumoApi/>
+              </div>
+            </div>
+          </section>
         </main>
-
-
       </div>
     );
   }
-
 }
-
-
-
 export default App;

@@ -6,20 +6,20 @@ Proyecto desarrollado con `React Js`
 
 ## Instalación
 
-Descargar el repositorio en [Github](https://github.com/CariJG/Prueba-ReactJS)
+Descargar el repositorio en [Github](https://github.com/Arturo-Almeida/Prueba-ReactJS)
 
-> git clone git@github.com:CariJG/Prueba-ReactJS.git
+> git clone git@github.com:Arturo-Almeida/Prueba-ReactJS.git
 
 Instalar las dependecias necesarias via __npm__ o __yarn__
 
 > npm install
-> 
+
 > yarn install
 
 ## Ejecución
 
 > npm start
->
+
 > yarn start
 
-* Carina Jiménez _carinajimenez.97@gmail.com_
+* Arturo Almeida Castillo _arturo_ac97@hotmail.com_
