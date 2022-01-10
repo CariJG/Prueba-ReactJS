@@ -27,6 +27,7 @@ class ConsumoApi extends Component {
             },
             (error) => {
                 console.log("Ocurrio un error");
+                // console.log("Prueba")
             }
         );
     };
